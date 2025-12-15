@@ -5,27 +5,11 @@ function waitFor(element, eventName) {
     element.addEventListener(
       eventName,
       (ev) => {
-        if (eventName === 'click') {
-          resolve(
-            `It was ${eventName} on the element: ${element.nodeName}, id: ${element.id}`,
-          );
-        }
+        ev.preventDefault();
 
-        if (eventName === 'contextmenu') {
-          ev.preventDefault();
-
-          resolve(
-            `It was ${eventName} on the element: ${element.nodeName}, id: ${element.id}`,
-          );
-        }
-
-        if (eventName === 'blur') {
-          ev.preventDefault();
-
-          resolve(
-            `It was ${eventName} on the element: ${element.nodeName}, id: ${element.id}`,
-          );
-        }
+        resolve(
+          `It was ${eventName} on the element: ${element.nodeName}, id: ${element.id}`,
+        );
       },
       { once: true },
     );
